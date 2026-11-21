@@ -2,6 +2,8 @@
 
 EventTide je spletna aplikacija za organizacijo dogodkov in upravljanje prijav udeležencev. Omogoča objavo dogodkov, prijave z omejenim številom mest, čakalni seznam in evidentiranje prisotnosti.
 
+Javni katalog je dostopen brez prijave. Po prijavi so v pogledu **Moj račun** na voljo orodja za uporabnikovo vlogo.
+
 ## Uporabniške vloge
 
 - **Udeleženec:** pregleduje dogodke, se prijavlja in upravlja svoje prijave.
@@ -10,7 +12,7 @@ EventTide je spletna aplikacija za organizacijo dogodkov in upravljanje prijav u
 
 ## Funkcionalnosti MVP
 
-- Objava, iskanje in filtriranje javnih dogodkov.
+- Objava in ogled podrobnosti javnih dogodkov ter iskanje po naslovu in filtriranje po kategoriji ali datumu.
 - Prijave z upoštevanjem kapacitete.
 - Čakalni seznam s samodejnim zapolnjevanjem sproščenih mest.
 - Pregled in odpoved lastnih prijav.
@@ -154,7 +156,9 @@ npm run dev --prefix frontend
 
 Frontend je privzeto dosegljiv na [http://localhost:5173](http://localhost:5173).
 
-Uporabimo naslov, ki ga izpiše Vite. Če uporablja druga vrata, ustrezno prilagodimo `FRONTEND_URL` v `backend/.env` in ponovno zaženemo backend. Na sveži bazi je javni seznam prazen, dokler organizator ne objavi prvega prihodnjega javnega dogodka.
+Uporabimo naslov, ki ga izpiše Vite. Če se razlikuje od privzetega, nastavimo `FRONTEND_URL` v `backend/.env` na točen izvor (protokol, gostitelj in vrata, brez zaključne poševnice) in ponovno zaženemo backend. Na sveži bazi je javni seznam prazen, dokler organizator ne objavi prvega prihodnjega javnega dogodka.
+
+Za nastavitev naslova API-ja glej [README frontenda](frontend/README.md).
 
 ## Preverjanje delovanja
 
