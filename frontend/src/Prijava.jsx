@@ -12,8 +12,7 @@ function authZahteva(pot, options = {}) {
   });
 }
 
-export default function Prijava() {
-  const [uporabnik, nastaviUporabnika] = useState(null);
+export default function Prijava({ vidna, uporabnik, nastaviUporabnika, registriran, poPrijavi }) {
   const [preverjanje, nastaviPreverjanje] = useState(true);
   const [oddajanje, nastaviOddajanje] = useState(false);
   const [napaka, nastaviNapako] = useState("");
@@ -43,7 +42,7 @@ export default function Prijava() {
 
     preveriSejo();
     return () => controller.abort();
-  }, []);
+  }, [nastaviUporabnika]);
 
   async function prijavi(event) {
     event.preventDefault();
@@ -68,6 +67,7 @@ export default function Prijava() {
 
       obrazec.reset();
       nastaviUporabnika(rezultat.uporabnik);
+      poPrijavi();
     } catch {
       nastaviNapako("Povezava s strežnikom ni uspela.");
     } finally {
@@ -96,24 +96,26 @@ export default function Prijava() {
   }
 
   return (
-    <section aria-labelledby="prijava-naslov">
-      <h2 id="prijava-naslov">{uporabnik ? "Moj račun" : "Prijava"}</h2>
+    <section className={uporabnik ? "workspace" : "auth-layout"} aria-labelledby="prijava-naslov">
+      <h1 id="prijava-naslov">{uporabnik ? "Moj račun" : "Dobrodošel nazaj"}</h1>
 
       {preverjanje ? (
         <p role="status">Preverjam prijavo …</p>
       ) : uporabnik ? (
         <>
-          <p>Prijavljen uporabnik: {uporabnik.ime}</p>
-          <p>Vloga: {uporabnik.vloga}</p>
-          <button type="button" onClick={odjavi} disabled={oddajanje}>
-            Odjavi se
-          </button>
-          {uporabnik.vloga === "administrator" && <Administracija key={uporabnik.id} />}
-          {uporabnik.vloga === "udeleženec" && <MojePrijave key={uporabnik.id} />}
-          {uporabnik.vloga === "organizator" && <DogodkiOrganizatorja />}
+          <div className="profile">
+            <span className="avatar" aria-hidden="true">{uporabnik.ime.slice(0, 1).toUpperCase()}</span>
+            <div><strong>{uporabnik.ime}</strong><p>{uporabnik.vloga}</p></div>
+            <button type="button" onClick={odjavi} disabled={oddajanje}>Odjavi se</button>
+          </div>
+          {vidna && uporabnik.vloga === "administrator" && <Administracija key={uporabnik.id} />}
+          {vidna && uporabnik.vloga === "udeleženec" && <MojePrijave key={uporabnik.id} />}
+          {vidna && uporabnik.vloga === "organizator" && <DogodkiOrganizatorja />}
         </>
       ) : (
-        <form onSubmit={prijavi}>
+        <form className="auth-card" onSubmit={prijavi}>
+          <h2>Prijava</h2>
+          {registriran && <p role="status">Račun je ustvarjen. Zdaj se lahko prijaviš.</p>}
           <p>
             <label>
               E-pošta{" "}
@@ -134,6 +136,7 @@ export default function Prijava() {
           <button type="submit" disabled={oddajanje}>
             {oddajanje ? "Prijavljam …" : "Prijavi se"}
           </button>
+          <p>Nimaš računa? <a href="#registracija">Ustvari račun</a></p>
         </form>
       )}
 
