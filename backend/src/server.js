@@ -1040,6 +1040,10 @@ app.patch(
   },
 );
 
-app.listen(port, () => {
-  console.log(`EventTide API: http://localhost:${port}`);
-});
+if (process.env.NODE_ENV !== "test") {
+  app.listen(port, () => {
+    console.log(`EventTide API: http://localhost:${port}`);
+  });
+}
+
+export { app, pool };
