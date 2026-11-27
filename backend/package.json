@@ -4,11 +4,14 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "node --watch src/server.js",
     "start": "node src/server.js",
     "db:migrate": "node src/migrate.js",
-    "admin:create": "node src/create-admin.js"
+    "admin:create": "node src/create-admin.js",
+    "lint": "eslint .",
+    "build": "mkdir -p build && cp -r src db package.json package-lock.json build/",
+    "test": "vitest run",
+    "test:coverage": "vitest run --coverage"
   },
   "keywords": [],
   "author": "",
@@ -22,5 +25,13 @@
     "express": "^5.3.0",
     "express-session": "^1.19.0",
     "pg": "^8.23.1"
+  },
+  "devDependencies": {
+    "@eslint/js": "^10.0.1",
+    "@vitest/coverage-v8": "^5.1.2",
+    "eslint": "^10.15.0",
+    "globals": "^17.14.0",
+    "supertest": "^7.3.2",
+    "vitest": "^5.1.2"
   }
 }

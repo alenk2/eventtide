@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import PrijaveDogodka from "./PrijaveDogodka.jsx";
 
-const API_URL = import.meta.env.VITE_API_URL || "http://localhost:3001";
+const API_URL = import.meta.env.VITE_API_URL ?? "http://localhost:3001";
 const POT = "/api/organizator/dogodki";
 const DATUMI = [
   ["zacetek", "Začetek"],

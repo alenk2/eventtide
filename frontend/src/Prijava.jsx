@@ -3,7 +3,7 @@ import DogodkiOrganizatorja from "./DogodkiOrganizatorja.jsx";
 import MojePrijave from "./MojePrijave.jsx";
 import Administracija from "./Administracija.jsx";
 
-const API_URL = import.meta.env.VITE_API_URL || "http://localhost:3001";
+const API_URL = import.meta.env.VITE_API_URL ?? "http://localhost:3001";
 
 function authZahteva(pot, options = {}) {
   return fetch(`${API_URL}/api/auth/${pot}`, {
