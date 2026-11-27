@@ -263,3 +263,24 @@ Funkcionalnosti MVP so implementirane. Preverjen je bil celoten potek od objave 
 
 Andrej Delimanchev  
 GitHub: [delimanchev](https://github.com/delimanchev)
+
+## CI/CD
+
+![CI/CD](https://github.com/alenk2/eventtide/actions/workflows/ci-cd.yml/badge.svg?branch=main)
+
+### Produkcijska namestitev
+
+- Frontend: [EventTide](https://eventtide-frontend.vercel.app/)
+- Backend: https://eventtide-backend-production.up.railway.app
+- Podatkovna baza: PostgreSQL (Railway)
+
+### Faze cevovoda
+
+- **Lint:** preverjanje kakovosti kode frontenda in backenda z ESLint.
+- **Build:** gradnja aplikacije, predpomnjenje npm odvisnosti in shranjevanje artefaktov.
+- **Test:** izvajanje 16 avtomatiziranih testov z Vitest in shranjevanje poročil o pokritosti kode.
+- **Deploy:** samodejna namestitev pripravljenih artefaktov na Vercel in Railway.
+
+Cevovod se sproži ob pull requestu v vejo main in ob pushu na vejo main. Namestitev se izvede samo ob pushu na main, če so vse predhodne faze uspešne.
+
+Veja main je zaščitena z obveznimi preverjanji lint, build in test.
