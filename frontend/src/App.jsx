@@ -5,7 +5,6 @@ import Prijava from "./Prijava.jsx";
 import JavniDogodki from "./JavniDogodki.jsx";
 
 const API_URL = import.meta.env.VITE_API_URL ?? "http://localhost:3001";
-const unusedTestVariable = 123;
 function Registracija({ poRegistraciji }) {
   const [oddajanje, nastaviVTeku] = useState(false);
   const [napaka, nastaviNapako] = useState("");
