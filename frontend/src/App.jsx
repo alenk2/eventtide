@@ -4,7 +4,7 @@ import Icon from "./Icon.jsx";
 import Prijava from "./Prijava.jsx";
 import JavniDogodki from "./JavniDogodki.jsx";
 
-const API_URL = import.meta.env.VITE_API_URL || "http://localhost:3001";
+const API_URL = import.meta.env.VITE_API_URL ?? "http://localhost:3001";
 
 function Registracija({ poRegistraciji }) {
   const [oddajanje, nastaviVTeku] = useState(false);

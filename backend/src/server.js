@@ -7,6 +7,10 @@ import session from "express-session";
 import connectPgSimple from "connect-pg-simple";
 
 const app = express();
+if (process.env.NODE_ENV === "production") {
+  app.set("trust proxy", 1);
+}
+
 const port = Number(process.env.PORT || 3001);
 const frontendUrl = process.env.FRONTEND_URL || "http://localhost:5173";
 const sessionSecret = process.env.SESSION_SECRET;
